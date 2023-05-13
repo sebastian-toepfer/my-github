@@ -8,10 +8,3 @@ updates:
       time: "01:00"
     target-branch: main
 
-  - package-ecosystem: github-actions
-    directory: "/"
-    schedule:
-      interval: daily
-      time: "01:00"
-    target-branch: main
-
