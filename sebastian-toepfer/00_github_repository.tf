@@ -56,3 +56,13 @@ resource "github_repository" "workspaces" {
   visibility = "private"
 }
 
+resource "github_repository" "pdf-test" {
+  name                   = "pdf-test"
+  delete_branch_on_merge = true
+  has_discussions        = false
+  has_downloads          = true
+  has_issues             = true
+  has_projects           = false
+  vulnerability_alerts   = true
+}
+
