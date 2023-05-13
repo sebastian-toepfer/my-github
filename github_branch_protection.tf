@@ -1,3 +1,23 @@
+resource "github_branch_protection" "sebastian-toepfer_my-github" {
+  repository_id = github_repository.sebastian-toepfer_my-github.node_id
+
+  pattern          = "main"
+  enforce_admins   = true
+  allows_deletions = false
+
+  require_conversation_resolution = true
+  required_pull_request_reviews {
+    required_approving_review_count = 1
+  }
+
+  required_status_checks {
+    contexts = [
+      "Terraform Cloud/sebastian-toepfer/github-personal",
+    ]
+    strict = true
+  }
+}
+
 resource "github_branch_protection" "sebastian-toepfer_domain-driven-desgin" {
   repository_id = github_repository.sebastian-toepfer_domain-driven-desgin.node_id
 
