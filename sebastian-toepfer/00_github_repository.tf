@@ -51,5 +51,8 @@ resource "github_repository" "gh-common" {
   has_wiki        = false
 }
 
+resource "github_repository" "workspaces" {
+  name       = "workspaces"
+  visibility = "private"
 }
 
