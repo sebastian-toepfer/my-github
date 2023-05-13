@@ -1,5 +1,5 @@
-resource "github_branch_protection" "sebastian-toepfer_my-github" {
-  repository_id = github_repository.sebastian-toepfer_my-github.node_id
+resource "github_branch_protection" "my-github" {
+  repository_id = github_repository.my-github.node_id
 
   pattern          = "main"
   enforce_admins   = true
@@ -18,8 +18,8 @@ resource "github_branch_protection" "sebastian-toepfer_my-github" {
   }
 }
 
-resource "github_branch_protection" "sebastian-toepfer_domain-driven-desgin" {
-  repository_id = github_repository.sebastian-toepfer_domain-driven-desgin.node_id
+resource "github_branch_protection" "domain-driven-desgin" {
+  repository_id = github_repository.domain-driven-desgin.node_id
 
   pattern          = "main"
   enforce_admins   = true
@@ -44,8 +44,8 @@ resource "github_branch_protection" "sebastian-toepfer_domain-driven-desgin" {
   }
 }
 
-resource "github_branch_protection" "sebastian-toepfer_json-rpc" {
-  repository_id = github_repository.sebastian-toepfer_json-rpc.node_id
+resource "github_branch_protection" "json-rpc" {
+  repository_id = github_repository.json-rpc.node_id
 
   pattern          = "main"
   enforce_admins   = true
@@ -70,8 +70,8 @@ resource "github_branch_protection" "sebastian-toepfer_json-rpc" {
   }
 }
 
-resource "github_branch_protection" "sebastian-toepfer_pdfbox-fluent-layout" {
-  repository_id = github_repository.sebastian-toepfer_pdfbox-fluent-layout.node_id
+resource "github_branch_protection" "pdfbox-fluent-layout" {
+  repository_id = github_repository.pdfbox-fluent-layout.node_id
 
   pattern          = "main"
   enforce_admins   = true

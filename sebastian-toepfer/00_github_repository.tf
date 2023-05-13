@@ -1,4 +1,4 @@
-resource "github_repository" "sebastian-toepfer_my-github" {
+resource "github_repository" "my-github" {
   name                   = "my-github"
   delete_branch_on_merge = true
   has_discussions        = false
@@ -8,7 +8,7 @@ resource "github_repository" "sebastian-toepfer_my-github" {
   has_wiki               = false
   vulnerability_alerts   = true
 }
-resource "github_repository" "sebastian-toepfer_domain-driven-desgin" {
+resource "github_repository" "domain-driven-desgin" {
   name                   = "domain-driven-desgin"
   delete_branch_on_merge = true
   has_discussions        = true
@@ -19,7 +19,7 @@ resource "github_repository" "sebastian-toepfer_domain-driven-desgin" {
   vulnerability_alerts   = true
 }
 
-resource "github_repository" "sebastian-toepfer_pdfbox-fluent-layout" {
+resource "github_repository" "pdfbox-fluent-layout" {
   name                   = "pdfbox-fluent-layout"
   delete_branch_on_merge = true
   has_discussions        = true
@@ -30,7 +30,7 @@ resource "github_repository" "sebastian-toepfer_pdfbox-fluent-layout" {
   vulnerability_alerts   = true
 }
 
-resource "github_repository" "sebastian-toepfer_json-rpc" {
+resource "github_repository" "json-rpc" {
   name                   = "json-rpc"
   delete_branch_on_merge = true
   has_discussions        = true

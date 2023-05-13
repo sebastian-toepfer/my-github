@@ -15,3 +15,10 @@ terraform {
   }
 }
 
+module "sebastian-toepfer" {
+  source = "./sebastian-toepfer"
+  providers = {
+    github = github.sebastian-toepfer
+  }
+}
+
