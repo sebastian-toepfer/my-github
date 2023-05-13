@@ -7,7 +7,7 @@ resource "github_branch_protection" "sebastian-toepfer_my-github" {
 
   require_conversation_resolution = true
   required_pull_request_reviews {
-    required_approving_review_count = 1
+    required_approving_review_count = 0
   }
 
   required_status_checks {
