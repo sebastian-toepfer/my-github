@@ -31,7 +31,7 @@ resource "github_branch_protection" "domain-driven-desgin" {
     dismissal_restrictions          = []
     pull_request_bypassers          = []
     require_code_owner_reviews      = false
-    require_last_push_approval      = true
+    require_last_push_approval      = false
     required_approving_review_count = 0
     restrict_dismissals             = false
   }
@@ -57,7 +57,7 @@ resource "github_branch_protection" "json-rpc" {
     dismissal_restrictions          = []
     pull_request_bypassers          = []
     require_code_owner_reviews      = false
-    require_last_push_approval      = true
+    require_last_push_approval      = false
     required_approving_review_count = 0
     restrict_dismissals             = false
   }
@@ -83,7 +83,7 @@ resource "github_branch_protection" "pdfbox-fluent-layout" {
     dismissal_restrictions          = []
     pull_request_bypassers          = []
     require_code_owner_reviews      = false
-    require_last_push_approval      = true
+    require_last_push_approval      = false
     required_approving_review_count = 0
     restrict_dismissals             = false
   }
