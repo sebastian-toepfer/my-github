@@ -1,3 +1,8 @@
+variable "github_token" {
+  type      = string
+  sensitive = true
+}
+
 variable "sonar-token" {
   type      = string
   sensitive = true

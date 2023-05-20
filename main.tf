@@ -20,5 +20,8 @@ module "sebastian-toepfer" {
   providers = {
     github = github.sebastian-toepfer
   }
+  sonar-token             = var.sonar-token
+  dependabot-sonar-token  = var.dependabot-sonar-token
+  unprotect-the-protected = var.unprotect-the-protected
 }
 
