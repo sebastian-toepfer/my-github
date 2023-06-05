@@ -66,3 +66,13 @@ resource "github_repository" "pdf-test" {
   vulnerability_alerts   = true
 }
 
+resource "github_repository" "json-printable-maven-plugin" {
+  name                   = "json-printable-maven-plugin"
+  delete_branch_on_merge = true
+  has_discussions        = false
+  has_downloads          = true
+  has_issues             = true
+  has_projects           = false
+  vulnerability_alerts   = true
+}
+
