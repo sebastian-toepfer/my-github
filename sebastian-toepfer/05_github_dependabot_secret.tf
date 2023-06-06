@@ -16,3 +16,9 @@ resource "github_dependabot_secret" "json-rpc_sonar-token" {
   plaintext_value = var.dependabot-sonar-token
 }
 
+resource "github_dependabot_secret" "json-printable-maven-plugin_sonar-token" {
+  repository      = github_repository.json-printable-maven-plugin.name
+  secret_name     = "sonar_token"
+  plaintext_value = var.dependabot-sonar-token
+}
+

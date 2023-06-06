@@ -34,3 +34,15 @@ resource "github_actions_secret" "json-rpc_unprotect_the_protected" {
   plaintext_value = var.unprotect-the-protected
 }
 
+resource "github_actions_secret" "json-printable-maven-plugin_sonar-token" {
+  repository      = github_repository.json-printable-maven-plugin.name
+  secret_name     = "unprotect_the_protected"
+  plaintext_value = var.unprotect-the-protected
+}
+
+resource "github_actions_secret" "json-printable-maven-plugin_unprotect-the-protected" {
+  repository      = github_repository.json-printable-maven-plugin.name
+  secret_name     = "unprotect_the_protected"
+  plaintext_value = var.sonar-token
+}
+
