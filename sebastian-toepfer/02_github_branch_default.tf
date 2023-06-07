@@ -18,3 +18,8 @@ resource "github_branch_default" "json-rpc" {
   branch     = github_branch.json-rpc_default.branch
 }
 
+resource "github_branch_default" "json-printable-maven-plugin" {
+  repository = github_repository.json-printable-maven-plugin.name
+  branch     = github_branch.json-printable-maven-plugin_default.branch
+}
+

@@ -18,3 +18,8 @@ resource "github_branch" "pdfbox-fluent-layout_default" {
   branch     = "main"
 }
 
+resource "github_branch" "json-printable-maven-plugin_default" {
+  repository = github_repository.json-printable-maven-plugin.name
+  branch     = "main"
+}
+
