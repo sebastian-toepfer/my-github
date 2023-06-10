@@ -1,24 +1,6 @@
-resource "github_dependabot_secret" "domain-driven-desgin_sonar-token" {
-  repository      = github_repository.domain-driven-desgin.name
+resource "github_dependabot_secret" "sonar-token" {
+  for_each        = { for key, value in github_repository.repos : key => value if var.repos[value.name].enable_sonar }
+  repository      = each.value.name
   secret_name     = "sonar_token"
   plaintext_value = var.dependabot-sonar-token
 }
-
-resource "github_dependabot_secret" "pdfbox-fluent-layout_sonar-token" {
-  repository      = github_repository.pdfbox-fluent-layout.name
-  secret_name     = "sonar_token"
-  plaintext_value = var.dependabot-sonar-token
-}
-
-resource "github_dependabot_secret" "json-rpc_sonar-token" {
-  repository      = github_repository.json-rpc.name
-  secret_name     = "sonar_token"
-  plaintext_value = var.dependabot-sonar-token
-}
-
-resource "github_dependabot_secret" "json-printable-maven-plugin_sonar-token" {
-  repository      = github_repository.json-printable-maven-plugin.name
-  secret_name     = "sonar_token"
-  plaintext_value = var.dependabot-sonar-token
-}
-

@@ -20,6 +20,36 @@ module "sebastian-toepfer" {
   providers = {
     github = github.sebastian-toepfer
   }
+  repos = {
+    "domain-driven-desgin" = {
+      enable_sonar          = true,
+      enable_default_branch = true,
+      enable_protection     = true,
+      default_actions       = ["build and analyze"],
+      enable_release        = true
+    },
+    "pdfbox-fluent-layout" = {
+      enable_sonar          = true,
+      enable_default_branch = true,
+      enable_protection     = true,
+      default_actions       = ["build / build and analyze"],
+      enable_release        = true
+    },
+    "json-rpc" = {
+      enable_sonar          = true,
+      enable_default_branch = true,
+      enable_protection     = true,
+      default_actions       = ["build / build and analyze"],
+      enable_release        = true
+    },
+    "json-printable-maven-plugin" = {
+      enable_sonar          = true,
+      enable_default_branch = true,
+      enable_protection     = true,
+      default_actions       = ["build / build and analyze"],
+      enable_release        = true
+    }
+  }
   sonar-token             = var.sonar-token
   dependabot-sonar-token  = var.dependabot-sonar-token
   unprotect-the-protected = var.unprotect-the-protected
