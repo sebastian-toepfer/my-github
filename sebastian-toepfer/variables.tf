@@ -1,3 +1,13 @@
+variable "repos" {
+  type = map(object({
+    enable_sonar          = bool,
+    enable_default_branch = bool,
+    enable_protection     = bool,
+    default_actions       = list(string),
+    enable_release        = bool,
+  }))
+}
+
 variable "sonar-token" {
   type      = string
   sensitive = true

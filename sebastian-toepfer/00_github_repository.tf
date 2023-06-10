@@ -9,30 +9,9 @@ resource "github_repository" "my-github" {
   vulnerability_alerts   = true
 }
 
-resource "github_repository" "domain-driven-desgin" {
-  name                   = "domain-driven-desgin"
-  delete_branch_on_merge = true
-  has_discussions        = true
-  has_downloads          = true
-  has_issues             = true
-  has_projects           = true
-  has_wiki               = true
-  vulnerability_alerts   = true
-}
-
-resource "github_repository" "pdfbox-fluent-layout" {
-  name                   = "pdfbox-fluent-layout"
-  delete_branch_on_merge = true
-  has_discussions        = true
-  has_downloads          = true
-  has_issues             = true
-  has_projects           = true
-  has_wiki               = true
-  vulnerability_alerts   = true
-}
-
-resource "github_repository" "json-rpc" {
-  name                   = "json-rpc"
+resource "github_repository" "repos" {
+  for_each               = var.repos
+  name                   = each.key
   delete_branch_on_merge = true
   has_discussions        = true
   has_downloads          = true
@@ -65,14 +44,3 @@ resource "github_repository" "pdf-test" {
   has_projects           = false
   vulnerability_alerts   = true
 }
-
-resource "github_repository" "json-printable-maven-plugin" {
-  name                   = "json-printable-maven-plugin"
-  delete_branch_on_merge = true
-  has_discussions        = false
-  has_downloads          = true
-  has_issues             = true
-  has_projects           = false
-  vulnerability_alerts   = true
-}
-

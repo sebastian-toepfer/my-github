@@ -3,23 +3,8 @@ resource "github_branch" "my-github_default" {
   branch     = "main"
 }
 
-resource "github_branch" "domain-driven-desgin_default" {
-  repository = github_repository.domain-driven-desgin.name
+resource "github_branch" "default" {
+  for_each   = { for key, value in github_repository.repos : key => value if var.repos[value.name].enable_default_branch }
+  repository = each.value.name
   branch     = "main"
 }
-
-resource "github_branch" "json-rpc_default" {
-  repository = github_repository.json-rpc.name
-  branch     = "main"
-}
-
-resource "github_branch" "pdfbox-fluent-layout_default" {
-  repository = github_repository.pdfbox-fluent-layout.name
-  branch     = "main"
-}
-
-resource "github_branch" "json-printable-maven-plugin_default" {
-  repository = github_repository.json-printable-maven-plugin.name
-  branch     = "main"
-}
-
