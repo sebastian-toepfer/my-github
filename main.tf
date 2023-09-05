@@ -48,6 +48,13 @@ module "sebastian-toepfer" {
       enable_protection     = true,
       default_actions       = ["build / build and analyze"],
       enable_release        = true
+    },
+    "json-schema" = {
+      enable_sonar          = false,
+      enable_default_branch = false,
+      enable_protection     = false,
+      default_actions       = [],
+      enable_release        = false
     }
   }
   sonar-token             = var.sonar-token
@@ -58,4 +65,3 @@ module "sebastian-toepfer" {
   gpg_pwd                 = var.pgp_pwd
   gpg_key                 = var.pgp_key
 }
-
