@@ -50,8 +50,8 @@ module "sebastian-toepfer" {
       enable_release        = true
     },
     "json-schema" = {
-      enable_sonar          = false,
-      enable_default_branch = false,
+      enable_sonar          = true,
+      enable_default_branch = true,
       enable_protection     = false,
       default_actions       = [],
       enable_release        = false
