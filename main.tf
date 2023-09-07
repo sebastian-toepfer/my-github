@@ -52,8 +52,8 @@ module "sebastian-toepfer" {
     "json-schema" = {
       enable_sonar          = true,
       enable_default_branch = true,
-      enable_protection     = false,
-      default_actions       = [],
+      enable_protection     = true,
+      default_actions       = ["build / build and analyze"],
       enable_release        = false
     }
   }
