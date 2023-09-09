@@ -55,6 +55,13 @@ module "sebastian-toepfer" {
       enable_protection     = true,
       default_actions       = ["build / build and analyze"],
       enable_release        = false
+    },
+    "learning-rust" = {
+      enable_sonar          = false,
+      enable_default_branch = false,
+      enable_protection     = false,
+      default_actions       = [],
+      enable_release        = false
     }
   }
   sonar-token             = var.sonar-token
