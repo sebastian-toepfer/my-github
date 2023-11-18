@@ -69,6 +69,13 @@ module "sebastian-toepfer" {
       enable_protection     = false,
       default_actions       = [],
       enable_release        = false
+    },
+    "oss-mvn-parent" = {
+      enable_sonar          = false,
+      enable_default_branch = false,
+      enable_protection     = false,
+      default_actions       = [],
+      enable_release        = false
     }
   }
   sonar-token             = var.sonar-token
