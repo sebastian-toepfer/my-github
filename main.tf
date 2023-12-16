@@ -22,6 +22,7 @@ module "sebastian-toepfer" {
   }
   repos = {
     "domain-driven-desgin" = {
+      description           = "A library for creating better systems according to domain driven design",
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
@@ -29,6 +30,7 @@ module "sebastian-toepfer" {
       enable_release        = true
     },
     "pdfbox-fluent-layout" = {
+      description           = null,
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
@@ -36,6 +38,7 @@ module "sebastian-toepfer" {
       enable_release        = true
     },
     "json-rpc" = {
+      description           = "json-rpc for java backends",
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
@@ -43,6 +46,7 @@ module "sebastian-toepfer" {
       enable_release        = true
     },
     "json-printable-maven-plugin" = {
+      description           = null,
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
@@ -50,6 +54,7 @@ module "sebastian-toepfer" {
       enable_release        = true
     },
     "json-schema" = {
+      description           = "json-schema for and with json-p",
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
@@ -57,6 +62,7 @@ module "sebastian-toepfer" {
       enable_release        = false
     },
     "learning-rust" = {
+      description           = null,
       enable_sonar          = false,
       enable_default_branch = false,
       enable_protection     = false,
@@ -64,6 +70,7 @@ module "sebastian-toepfer" {
       enable_release        = false
     },
     "3d-models" = {
+      description           = null,
       enable_sonar          = false,
       enable_default_branch = false,
       enable_protection     = false,
@@ -71,6 +78,7 @@ module "sebastian-toepfer" {
       enable_release        = false
     },
     "oss-mvn-parent" = {
+      description           = null,
       enable_sonar          = false,
       enable_default_branch = false,
       enable_protection     = false,
@@ -78,6 +86,7 @@ module "sebastian-toepfer" {
       enable_release        = false
     },
     "refaster" = {
+      description           = null,
       enable_sonar          = false,
       enable_default_branch = false,
       enable_protection     = false,

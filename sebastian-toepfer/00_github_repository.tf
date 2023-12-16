@@ -12,6 +12,7 @@ resource "github_repository" "my-github" {
 resource "github_repository" "repos" {
   for_each               = var.repos
   name                   = each.key
+  description            = each.value.description
   delete_branch_on_merge = true
   has_discussions        = true
   has_downloads          = true
