@@ -54,7 +54,7 @@ module "sebastian-toepfer" {
       enable_release        = true
     },
     "json-schema" = {
-      description           = "json-schema for json-p",
+      description           = "json-schema for and with json-p",
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
