@@ -7,11 +7,6 @@ variable "repos" {
     default_actions       = list(string),
     enable_release        = bool,
   }))
-  default = {
-    {
-      description = null
-    }
-  }
 }
 
 variable "sonar-token" {
