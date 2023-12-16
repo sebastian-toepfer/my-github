@@ -1,5 +1,6 @@
 variable "repos" {
   type = map(object({
+    description           = string,
     enable_sonar          = bool,
     enable_default_branch = bool,
     enable_protection     = bool,

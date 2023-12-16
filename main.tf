@@ -22,6 +22,7 @@ module "sebastian-toepfer" {
   }
   repos = {
     "domain-driven-desgin" = {
+      description           = "A library for creating better systems according to domain driven design",
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
@@ -36,6 +37,7 @@ module "sebastian-toepfer" {
       enable_release        = true
     },
     "json-rpc" = {
+      description           = "json-rpc for java backends",
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
@@ -50,6 +52,7 @@ module "sebastian-toepfer" {
       enable_release        = true
     },
     "json-schema" = {
+      description           = "json-schema for json-p",
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
