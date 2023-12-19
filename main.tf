@@ -42,7 +42,10 @@ module "sebastian-toepfer" {
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
-      default_actions       = ["build / build and analyze"],
+      default_actions       = [
+        "build / build and analyze",
+        "run jmh benchmark"
+      ],
       enable_release        = true
     },
     "json-printable-maven-plugin" = {
