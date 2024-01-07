@@ -83,10 +83,10 @@ module "sebastian-toepfer" {
     "oss-mvn-parent" = {
       description           = null,
       enable_sonar          = false,
-      enable_default_branch = false,
-      enable_protection     = false,
+      enable_default_branch = true,
+      enable_protection     = true,
       default_actions       = [],
-      enable_release        = false
+      enable_release        = true
     },
     "refaster" = {
       description           = null,
