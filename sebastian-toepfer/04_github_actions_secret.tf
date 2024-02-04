@@ -6,7 +6,7 @@ resource "github_actions_secret" "sonar-token" {
 }
 
 resource "github_actions_secret" "unprotect-the-protected" {
-  for_each        = { for key, value in github_repository.repos : key => value if var.repos[value.name].enable_release }
+  for_each        = { for key, value in github_repository.repos : key => value if var.repos[value.name].enable_protection }
   repository      = each.value.name
   secret_name     = "unprotect_the_protected"
   plaintext_value = var.unprotect-the-protected
