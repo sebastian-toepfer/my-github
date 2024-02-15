@@ -78,7 +78,7 @@ module "sebastian-toepfer" {
       enable_default_branch = true,
       enable_protection     = true,
       default_actions       = ["build / build and analyze"],
-      enable_release        = false
+      enable_release        = true
     },
     "learning-rust" = {
       description           = null,
