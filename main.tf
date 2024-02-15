@@ -72,6 +72,14 @@ module "sebastian-toepfer" {
       default_actions       = [],
       enable_release        = false
     },
+    "condition4j" = {
+      description           = "lib for more oo-based preconditions",
+      enable_sonar          = true,
+      enable_default_branch = false,
+      enable_protection     = false,
+      default_actions       = [],
+      enable_release        = false
+    },
     "learning-rust" = {
       description           = null,
       enable_sonar          = false,
