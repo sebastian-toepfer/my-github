@@ -67,9 +67,9 @@ module "sebastian-toepfer" {
     "bnf4j" = {
       description           = "lib for the use of bnf in java",
       enable_sonar          = true,
-      enable_default_branch = false,
-      enable_protection     = false,
-      default_actions       = [],
+      enable_default_branch = true,
+      enable_protection     = true,
+      default_actions       = ["build / build and analyze"],
       enable_release        = false
     },
     "condition4j" = {
