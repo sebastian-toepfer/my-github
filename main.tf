@@ -116,9 +116,9 @@ module "sebastian-toepfer" {
       description           = "Opensource VDI Solution, inspired by the good old discontinued sun vdi",
       enable_sonar          = true,
       enable_default_branch = true,
-      enable_protection     = false,
+      enable_protection     = true,
       default_actions       = ["build / build and analyze"],
-      enable_release        = false
+      enable_release        = true
     }
   }
   sonar-token             = var.sonar-token
