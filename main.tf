@@ -114,10 +114,10 @@ module "sebastian-toepfer" {
     },
     "openvdi" = {
       description           = "Opensource VDI Solution, inspired by the good old discontinued sun vdi",
-      enable_sonar          = false,
-      enable_default_branch = false,
+      enable_sonar          = true,
+      enable_default_branch = true,
       enable_protection     = false,
-      default_actions       = [],
+      default_actions       = ["build / build and analyze"],
       enable_release        = false
     }
   }
