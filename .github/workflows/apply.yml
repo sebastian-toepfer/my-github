@@ -29,7 +29,6 @@ jobs:
         with:
           operation: download
           location: artifact
-        continue-on-error: true
 
       - name: Setup opentofu
         uses: opentofu/setup-opentofu@v1
