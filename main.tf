@@ -1,16 +1,27 @@
 terraform {
-  cloud {
-    organization = "sebastian-toepfer"
-
-    workspaces {
-      name = "github-personal"
-    }
-  }
-
   required_providers {
     github = {
       source  = "integrations/github"
       version = "~> 6.0"
+    }
+  }
+
+  encryption {
+    key_provider "pbkdf2" "enc_passphrase" {
+      passphrase    = var.enc_passphrase
+      key_length    = 32
+      iterations    = 600000
+      salt_length   = 32
+      hash_function = "sha512"
+    }
+
+    method "aes_gcm" "enc_passphrase" {
+      keys = key_provider.pbkdf2.enc_passphrase
+    }
+
+    state {
+      method   = method.aes_gcm.enc_passphrase
+      enforced = true
     }
   }
 }
@@ -42,11 +53,11 @@ module "sebastian-toepfer" {
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
-      default_actions       = [
+      default_actions = [
         "build / build and analyze",
         "run jmh benchmark"
       ],
-      enable_release        = true
+      enable_release = true
     },
     "json-printable-maven-plugin" = {
       description           = null,
@@ -121,9 +132,9 @@ module "sebastian-toepfer" {
       enable_release        = true
     }
   }
-  sonar-token             = var.sonar-token
-  dependabot-sonar-token  = var.dependabot-sonar-token
-  unprotect-the-protected = var.unprotect-the-protected
+  sonar-token             = var.sonar_token
+  dependabot-sonar-token  = var.dependabot_sonar_token
+  unprotect-the-protected = var.unprotect_the_protected
   mvn_repo_user           = var.mvn_repo_user
   mvn_repo_pwd            = var.mvn_repo_pwd
   gpg_pwd                 = var.pgp_pwd

@@ -1,0 +1,64 @@
+---
+name: apply
+on:
+  push:
+    branches: main
+    paths-ignore: terraform.tfstate
+
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: badgerhobbs/terraform-state@v2
+        with:
+          operation: download
+          location: artifact
+        continue-on-error: true
+
+      - name: Setup opentofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: '>= 1.9.0 < 1.10.0'
+
+      - name: Init opentofu
+        run: tofu init
+        env:
+          TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
+
+      - name: Run plan
+        run: tofu plan -out plan.tfplan
+        env:
+          TF_VAR_dependabot_sonar_token: ${{ secrets.dependabot_sonar_token }}
+          TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
+          TF_VAR_github_token: ${{ secrets.personal_github_token }}
+          TF_VAR_mvn_repo_pwd: ${{ secrets.mvn_repo_pwd }}
+          TF_VAR_mvn_repo_user: ${{ secrets.mvn_repo_user }}
+          TF_VAR_pgp_key: ${{ secrets.pgp_key }}
+          TF_VAR_pgp_pwd: ${{ secrets.pgp_pwd }}
+          TF_VAR_sonar_token: ${{ secrets.sonar_token }}
+          TF_VAR_unprotect_the_protected: ${{ secrets.unprotect_the_protected }}
+
+      - name: Show current plan
+        run: tofu show plan.tfplan
+
+      - name: Run apply
+        run: tofu apply plan.tfplan
+
+      - name: Upload Artifact
+        uses: badgerhobbs/terraform-state@v2
+        with:
+          operation: upload
+          location: artifact
