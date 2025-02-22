@@ -17,6 +17,9 @@ jobs:
       # added or changed files to the repository.
       contents: write
 
+    env:
+      TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,7 +29,7 @@ jobs:
         with:
           operation: download
           location: artifact
-        continue-on-error: true
+          github_token: ${{ secrets.github_token }}
 
       - name: Setup opentofu
         uses: opentofu/setup-opentofu@v1
@@ -35,14 +38,11 @@ jobs:
 
       - name: Init opentofu
         run: tofu init
-        env:
-          TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
 
       - name: Run plan
         run: tofu plan -out plan.tfplan
         env:
           TF_VAR_dependabot_sonar_token: ${{ secrets.dependabot_sonar_token }}
-          TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
           TF_VAR_github_token: ${{ secrets.personal_github_token }}
           TF_VAR_mvn_repo_pwd: ${{ secrets.mvn_repo_pwd }}
           TF_VAR_mvn_repo_user: ${{ secrets.mvn_repo_user }}
