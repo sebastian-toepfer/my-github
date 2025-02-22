@@ -3,17 +3,17 @@ variable "github_token" {
   sensitive = true
 }
 
-variable "sonar-token" {
+variable "sonar_token" {
   type      = string
   sensitive = true
 }
 
-variable "dependabot-sonar-token" {
+variable "dependabot_sonar_token" {
   type      = string
   sensitive = true
 }
 
-variable "unprotect-the-protected" {
+variable "unprotect_the_protected" {
   type      = string
   sensitive = true
 }
