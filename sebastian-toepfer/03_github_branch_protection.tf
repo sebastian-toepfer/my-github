@@ -12,7 +12,7 @@ resource "github_branch_protection" "my-github" {
 
   required_status_checks {
     contexts = [
-      "Terraform Cloud/sebastian-toepfer/repo-id-uasZBgXRrDfocfie",
+      "plan",
     ]
     strict = true
   }
