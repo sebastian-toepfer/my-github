@@ -1,0 +1,123 @@
+---
+name: plan
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: badgerhobbs/terraform-state@v2
+        with:
+          operation: download
+          location: artifact
+          github_token: ${{ secrets.github_token }}
+        continue-on-error: true
+
+      - name: Setup opentofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: '>= 1.9.0 < 1.10.0'
+
+      - name: Check format
+        run: tofu fmt -check
+        id: fmt
+
+      - name: Init opentofu
+        if: always()
+        run: tofu init
+        id: init
+        env:
+          TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
+
+      - name: Validate
+        if: always()
+        run: tofu validate -no-color
+        id: validate
+
+      - name: Plan
+        if: always()
+        run: tofu plan -no-color
+        id: plan
+        env:
+          TF_VAR_dependabot_sonar_token: ${{ secrets.dependabot_sonar_token }}
+          TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
+          TF_VAR_github_token: ${{ secrets.personal_github_token }}
+          TF_VAR_mvn_repo_pwd: ${{ secrets.mvn_repo_pwd }}
+          TF_VAR_mvn_repo_user: ${{ secrets.mvn_repo_user }}
+          TF_VAR_pgp_key: ${{ secrets.pgp_key }}
+          TF_VAR_pgp_pwd: ${{ secrets.pgp_pwd }}
+          TF_VAR_sonar_token: ${{ secrets.sonar_token }}
+          TF_VAR_unprotect_the_protected: ${{ secrets.unprotect_the_protected }}
+        continue-on-error: true
+
+      - name: Comment pullrequest
+        if: always()
+        uses: actions/github-script@v6
+        env:
+          PLAN: "tofu\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // 1. Retrieve existing bot comments for the PR
+            const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+            })
+            const botComment = comments.find(comment => {
+                return comment.user.type === 'Bot' && comment.body.includes('OpenTofu Format and Style')
+            })
+
+            // 2. Prepare format of the comment
+            const output = `#### OpenTofu Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### OpenTofu Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### OpenTofu Validation 🤖\`${{ steps.validate.outcome }}\`
+            <details><summary>Validation Output</summary>
+
+            \`\`\`\n
+            ${{ steps.validate.outputs.stdout }}
+            \`\`\`
+
+            </details>
+
+            #### OpenTofu Plan 📖\`${{ steps.plan.outcome }}\`
+
+            <details><summary>Show Plan</summary>
+
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+
+            </details>
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+
+            // 3. If we have a comment, update it, otherwise create a new one
+            if (botComment) {
+                github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: output
+                })
+            } else {
+                github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+                })
+            }
