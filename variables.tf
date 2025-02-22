@@ -1,3 +1,7 @@
+variable "enc_passphrase" {
+  type      = string
+  sensitive = true
+}
 variable "github_token" {
   type      = string
   sensitive = true

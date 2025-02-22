@@ -5,6 +5,25 @@ terraform {
       version = "~> 6.0"
     }
   }
+
+  encryption {
+    key_provider "pbkdf2" "enc_passphrase" {
+      passphrase    = var.enc_passphrase
+      key_length    = 32
+      iterations    = 600000
+      salt_length   = 32
+      hash_function = "sha512"
+    }
+
+    method "aes_gcm" "enc_passphrase" {
+      keys = key_provider.pbkdf2.enc_passphrase
+    }
+
+    state {
+      method   = method.aes_gcm.enc_passphrase
+      enforced = true
+    }
+  }
 }
 
 module "sebastian-toepfer" {
@@ -34,11 +53,11 @@ module "sebastian-toepfer" {
       enable_sonar          = true,
       enable_default_branch = true,
       enable_protection     = true,
-      default_actions       = [
+      default_actions = [
         "build / build and analyze",
         "run jmh benchmark"
       ],
-      enable_release        = true
+      enable_release = true
     },
     "json-printable-maven-plugin" = {
       description           = null,
