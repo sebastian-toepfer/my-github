@@ -29,6 +29,7 @@ jobs:
         with:
           operation: download
           location: artifact
+          github_token: ${{ secrets.github_token }}
 
       - name: Setup opentofu
         uses: opentofu/setup-opentofu@v1
