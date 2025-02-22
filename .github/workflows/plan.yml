@@ -14,6 +14,9 @@ jobs:
     permissions:
       pull-requests: write
 
+    env:
+      TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,8 +42,6 @@ jobs:
         if: always()
         run: tofu init
         id: init
-        env:
-          TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
 
       - name: Validate
         if: always()
@@ -53,7 +54,6 @@ jobs:
         id: plan
         env:
           TF_VAR_dependabot_sonar_token: ${{ secrets.dependabot_sonar_token }}
-          TF_VAR_enc_passphrase: ${{ secrets.enc_passphrase }}
           TF_VAR_github_token: ${{ secrets.personal_github_token }}
           TF_VAR_mvn_repo_pwd: ${{ secrets.mvn_repo_pwd }}
           TF_VAR_mvn_repo_user: ${{ secrets.mvn_repo_user }}
