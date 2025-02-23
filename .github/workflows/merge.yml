@@ -1,0 +1,45 @@
+---
+name: merge dependabot
+
+on:
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - plan
+
+jobs:
+  merge:
+    name: 'merge dependabot'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: badgerhobbs/terraform-state@v2
+        with:
+          operation: download
+          location: artifact
+          github_token: ${{ secrets.github_token }}
+
+      - name: Setup opentofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: '>= 1.9.0 < 1.10.0'
+
+      - name: Init opentofu
+        run: tofu init
+
+      - name: Run plan
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        run: tofu plan -input=false -no-color -detailed-exitcode
+
+      - name: Merge
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.unprotect_the_protected }}
+          MERGE_METHOD: MERGE
+          PRESET: DEPENDABOT_MINOR
+          ENABLE_GITHUB_API_PREVIEW: true
