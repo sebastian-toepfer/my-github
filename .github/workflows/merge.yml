@@ -38,6 +38,15 @@ jobs:
       - name: Run plan
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: tofu plan -input=false -no-color -detailed-exitcode
+        env:
+          TF_VAR_dependabot_sonar_token: ${{ secrets.dependabot_sonar_token }}
+          TF_VAR_github_token: ${{ secrets.personal_github_token }}
+          TF_VAR_mvn_repo_pwd: ${{ secrets.mvn_repo_pwd }}
+          TF_VAR_mvn_repo_user: ${{ secrets.mvn_repo_user }}
+          TF_VAR_pgp_key: ${{ secrets.pgp_key }}
+          TF_VAR_pgp_pwd: ${{ secrets.pgp_pwd }}
+          TF_VAR_sonar_token: ${{ secrets.sonar_token }}
+          TF_VAR_unprotect_the_protected: ${{ secrets.unprotect_the_protected }}
 
       - name: Merge
         uses: ridedott/merge-me-action@v2
