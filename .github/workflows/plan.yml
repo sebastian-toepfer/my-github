@@ -64,7 +64,7 @@ jobs:
 
       - name: Comment pullrequest
         if: always()
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           PLAN: "tofu\n${{ steps.plan.outputs.stdout }}"
         with:
