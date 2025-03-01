@@ -151,7 +151,6 @@ module "sebastian-toepfer" {
     }
   }
   sonar-token             = var.sonar_token
-  dependabot-sonar-token  = var.dependabot_sonar_token
   unprotect-the-protected = var.unprotect_the_protected
   mvn_repo_user           = var.mvn_repo_user
   mvn_repo_pwd            = var.mvn_repo_pwd
