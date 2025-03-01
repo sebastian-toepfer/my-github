@@ -49,6 +49,7 @@ jobs:
           TF_VAR_pgp_key: ${{ secrets.pgp_key }}
           TF_VAR_pgp_pwd: ${{ secrets.pgp_pwd }}
           TF_VAR_sonar_token: ${{ secrets.sonar_token }}
+          TF_VAR_sonar_login: ${{ secrets.sonar_login }}
           TF_VAR_unprotect_the_protected: ${{ secrets.unprotect_the_protected }}
 
       - name: Show current plan
