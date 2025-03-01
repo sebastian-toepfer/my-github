@@ -150,6 +150,7 @@ module "sebastian-toepfer" {
       enable_release        = true
     }
   }
+  sonar_login             = var.sonar_login
   sonar-token             = var.sonar_token
   unprotect-the-protected = var.unprotect_the_protected
   mvn_repo_user           = var.mvn_repo_user

@@ -10,6 +10,11 @@ variable "repos" {
   }))
 }
 
+variable "sonar_login" {
+  type = string
+  sensitive = true
+}
+
 variable "sonar-token" {
   type      = string
   sensitive = true

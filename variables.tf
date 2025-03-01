@@ -7,6 +7,11 @@ variable "github_token" {
   sensitive = true
 }
 
+variable "sonar_login" {
+  type      = string
+  sensitive = true
+}
+
 variable "sonar_token" {
   type      = string
   sensitive = true
