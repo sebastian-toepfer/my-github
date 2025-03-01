@@ -1,5 +1,6 @@
 variable "repos" {
   type = map(object({
+    display_name          = string,
     description           = string,
     enable_sonar          = bool,
     enable_default_branch = bool,
@@ -10,11 +11,6 @@ variable "repos" {
 }
 
 variable "sonar-token" {
-  type      = string
-  sensitive = true
-}
-
-variable "dependabot-sonar-token" {
   type      = string
   sensitive = true
 }

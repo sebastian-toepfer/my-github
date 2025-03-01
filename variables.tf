@@ -12,11 +12,6 @@ variable "sonar_token" {
   sensitive = true
 }
 
-variable "dependabot_sonar_token" {
-  type      = string
-  sensitive = true
-}
-
 variable "unprotect_the_protected" {
   type      = string
   sensitive = true

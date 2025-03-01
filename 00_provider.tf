@@ -8,3 +8,13 @@ provider "github" {
   owner = "sebastian-toepfer"
 }
 
+provider "sonarcloud" {
+  organization = "sebastian-toepfer"
+  token        = var.sonar_token
+}
+
+provider "sonarcloud" {
+  alias        = "sebastian-toepfer"
+  organization = "sebastian-toepfer"
+  token        = var.sonar_token
+}
