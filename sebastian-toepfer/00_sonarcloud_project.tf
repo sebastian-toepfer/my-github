@@ -1,6 +1,6 @@
 resource "sonarcloud_project" "projects" {
-  for_each = { for key, value in github_repository.repos : key => value if var.repos[value.name].enable_sonar }
+  for_each   = { for key, value in var.repos: key => value if value.enable_sonar }
   key        = "sebastian-toepfer_${each.key}"
-  name       = var.repos[each.key].display_name
+  name       = each.value.display_name
   visibility = "public"
 }
