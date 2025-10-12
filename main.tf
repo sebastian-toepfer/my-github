@@ -148,7 +148,16 @@ module "sebastian-toepfer" {
       enable_protection     = true,
       default_actions       = ["build / build and analyze"],
       enable_release        = true
-    }
+    },
+    "virtual-gaming-station" = {
+      display_name          = "VirtualGamingMachine",
+      description           = "ansible playbook to manage my virtaul gaming machine",
+      enable_sonar          = false,
+      enable_default_branch = false,
+      enable_protection     = false,
+      default_actions       = [],
+      enable_release        = false
+    },
   }
   sonar_login             = var.sonar_login
   sonar-token             = var.sonar_token
