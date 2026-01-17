@@ -29,9 +29,9 @@ jobs:
           github_token: ${{ secrets.github_token }}
 
       - name: Setup opentofu
-        uses: opentofu/setup-opentofu@v1
+        uses: ./.github/actions/setup-opentofu
         with:
-          tofu_version: '>= 1.10.0 < 1.11.0'
+          tofu_version_file: '.tool-versions'
 
       - name: Check format
         run: tofu fmt -check

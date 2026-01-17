@@ -1,0 +1,20 @@
+---
+name: Setup opentofu
+inputs:
+  tofu_version_file:
+    type: string
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Extract version from version file 
+      id: determine_tofu_version
+      shell: bash
+      run: |
+        echo "version=$(grep 'opentofu' ${{ inputs.tofu_version_file }} | cut -d ' ' -f2)" >> $GITHUB_OUTPUT
+
+    - name: Setup opentufu
+      uses: opentofu/setup-opentofu@v1
+      with:
+        tofu_version: ${{ steps.determine_tofu_version.outputs.version }}
