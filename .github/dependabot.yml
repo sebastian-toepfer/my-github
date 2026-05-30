@@ -7,7 +7,7 @@ updates:
       interval: daily
       time: "01:00"
     target-branch: main
-  - package-ecosystem: terraform
+  - package-ecosystem: opentofu
     directory: "/"
     schedule:
       interval: daily
