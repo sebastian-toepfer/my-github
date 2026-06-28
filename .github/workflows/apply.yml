@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Download Artifact
-        uses: badgerhobbs/terraform-state@v2
+        uses: ./.github/actions/terraform-state
         with:
           operation: download
           location: artifact
@@ -61,7 +61,7 @@ jobs:
         run: tofu apply plan.tfplan
 
       - name: Upload Artifact
-        uses: badgerhobbs/terraform-state@v2
+        uses: ./.github/actions/terraform-state
         with:
           operation: upload
           location: artifact
