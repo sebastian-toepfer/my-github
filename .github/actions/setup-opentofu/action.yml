@@ -15,6 +15,6 @@ runs:
         echo "version=$(grep 'opentofu' ${{ inputs.tofu_version_file }} | cut -d ' ' -f2)" >> $GITHUB_OUTPUT
 
     - name: Setup opentufu
-      uses: opentofu/setup-opentofu@v1
+      uses: opentofu/setup-opentofu@v2.0.1
       with:
         tofu_version: ${{ steps.determine_tofu_version.outputs.version }}
