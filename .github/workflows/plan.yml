@@ -49,8 +49,7 @@ jobs:
 
       - name: Plan
         if: always()
-        run: tofu plan -no-color
-        id: plan
+        run: tofu plan -no-color -out plan.tfplan
         env:
           TF_VAR_dependabot_sonar_token: ${{ secrets.dependabot_sonar_token }}
           TF_VAR_github_token: ${{ secrets.personal_github_token }}
@@ -62,6 +61,11 @@ jobs:
           TF_VAR_sonar_login: ${{ secrets.sonar_login }}
           TF_VAR_unprotect_the_protected: ${{ secrets.unprotect_the_protected }}
         continue-on-error: true
+
+      - name: Show plan
+        if: always()
+        id: plan
+        run: tofu show -no-color plan.tfplan
 
       - name: Comment pullrequest
         if: always()
